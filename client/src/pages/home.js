@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useGetUserID } from "../hooks/useGetUserID";
 import axios from "axios";
+import "./home.css"
 
 export const Home = () => {
   const [recipes, setRecipes] = useState([]);
@@ -50,26 +51,33 @@ export const Home = () => {
   return (
     <div>
       <h1>Recipes</h1>
-      <ul>
         {recipes.map((recipe) => (
-          <li key={recipe._id}>
-            <div>
-              <h2>{recipe.name}</h2>
+          <div key={recipe._id}>
+            <div className="recipe"> 
+            <div className="recipeimage"><img src={recipe.imageUrl} alt={recipe.name} /></div>
+              <div className="content">
+                <div className="recipename">{recipe.name}</div>
+              <div className="ingredients">
+                  Ingredients:  {recipe.ingredients+""}
+                </div>
+            <div className="instructions">
+              {recipe.instructions}
+            </div>
+            <div className="time">
+            Cooking Time: {recipe.cookingTime} minutes
+            </div>
+            <div className="savebutton">
               <button
                 onClick={() => saveRecipe(recipe._id)}
                 disabled={isRecipeSaved(recipe._id)}
               >
                 {isRecipeSaved(recipe._id) ? "Saved" : "Save"}
               </button>
+              </div>
+              </div>
             </div>
-            <div className="instructions">
-              <p>{recipe.instructions}</p>
-            </div>
-            <img src={recipe.imageUrl} alt={recipe.name} />
-            <p>Cooking Time: {recipe.cookingTime} minutes</p>
-          </li>
+          </div>
         ))}
-      </ul>
     </div>
   );
 };

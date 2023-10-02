@@ -1,0 +1,63 @@
+h1{
+    color: cornflowerblue;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 40px;
+}
+.recipe{
+    width: 90%;
+    height: 100%;
+    align-items: center;
+    margin-left: 50px;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    background-color: rgb(222, 225, 204);
+    margin-top: 50px;
+    margin-top: 50px;
+    display: flex;
+}
+.recipeimage img{
+  width: 350px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+.content{
+    width: 60%;
+}
+.recipename{
+    color: rgb(35, 36, 38);
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+}
+.ingredients{
+    text-align: center;
+    color: rgb(116, 131, 131);
+}
+.savebutton button{
+    width: 150px;
+  height: 40px;
+  background-color: rgb(19, 19, 19);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-left: 40%;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.instructions{
+  color:darkolivegreen;
+  margin-top: 20px;
+  font-style: italic;
+}
+.time{
+  margin-top: 20px;
+  text-align: center;
+  color: rgb(116, 131, 131);
+}

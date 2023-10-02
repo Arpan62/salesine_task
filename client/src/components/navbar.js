@@ -19,7 +19,7 @@ export const Navbar = () => {
       {!cookies.access_token ? (
         <Link to="/auth">Login/Register</Link>
       ) : (
-        <button onClick={logout}> Logout </button>
+        <button style={{"margin-top":"5px","margin-left":"7px","padding":"4px","padding-left":"15px","padding-right":"15px"}} onClick={logout}> Logout </button>
       )}
     </div>
   );

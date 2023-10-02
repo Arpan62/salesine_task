@@ -21,6 +21,7 @@ router.post("/", verifyToken, async (req, res) => {
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
     image: req.body.image,
+    description: req.body.description,
     ingredients: req.body.ingredients,
     instructions: req.body.instructions,
     imageUrl: req.body.imageUrl,
@@ -80,6 +81,16 @@ router.get("/savedRecipes/ids/:userId", async (req, res) => {
   }
 });
 
+router.get("/userInfoById", async (req, res) => {
+  let userId = req.query.userId;
+  try {
+    const user = await UserModel.find({ _id: userId });
+    res.send(user);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 // Get saved recipes
 router.get("/savedRecipes/:userId", async (req, res) => {
   try {
@@ -97,3 +108,12 @@ router.get("/savedRecipes/:userId", async (req, res) => {
 });
 
 export { router as recipesRouter };
+
+
+
+
+
+
+
+
+

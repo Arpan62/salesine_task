@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useGetUserID } from "../hooks/useGetUserID";
 import axios from "axios";
 
-export const SavedRecipes = () => {
+export const SavedRecipes = (props) => {
   const [savedRecipes, setSavedRecipes] = useState([]);
+  const [Contributor, setContributor] = useState([]);
   const userID = useGetUserID();
 
   useEffect(() => {
@@ -13,28 +14,47 @@ export const SavedRecipes = () => {
           `http://localhost:3001/recipes/savedRecipes/${userID}`
         );
         setSavedRecipes(response.data.savedRecipes);
-      } catch (err) {
+      } catch (err){
         console.log(err);
       }
     };
-
     fetchSavedRecipes();
   }, []);
+
+  useEffect(() => {
+    async function fetchContributor() {
+      let userDetail = await axios.get(`http://localhost:3001/recipes/userInfoById`, {
+        params: {
+          userId: props.details.userId,
+        },
+      });
+      setContributor(userDetail.data[0].fullName);
+    }
+    fetchContributor();
+  }, []);
+
   return (
     <div>
       <h1>Saved Recipes</h1>
-      <ul>
         {savedRecipes.map((recipe) => (
-          <li key={recipe._id}>
-            <div>
-              <h2>{recipe.name}</h2>
+          <div key={recipe._id}>
+          <div className="recipe"> 
+          <div className="recipeimage"><img src={recipe.imageUrl} alt={recipe.name} /></div>
+            <div className="content">
+              <div className="recipename">{recipe.name} {Contributor}</div>
+            <div className="ingredients">
+                Ingredients:  {recipe.ingredients+""}
+              </div>
+          <div className="instructions">
+            {recipe.instructions}
+          </div>
+          <div className="time">
+          Cooking Time: {recipe.cookingTime} minutes
+          </div>
             </div>
-            <p>{recipe.description}</p>
-            <img src={recipe.imageUrl} alt={recipe.name} />
-            <p>Cooking Time: {recipe.cookingTime} minutes</p>
-          </li>
+          </div>
+          </div>
         ))}
-      </ul>
     </div>
   );
 };

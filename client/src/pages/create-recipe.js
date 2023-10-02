@@ -53,7 +53,7 @@ export const CreateRecipe = () => {
       console.error(error);
     }
   };
-
+console.log(recipe);
   return (
     <div className="create-recipe">
       <h2>Create Recipe</h2>
